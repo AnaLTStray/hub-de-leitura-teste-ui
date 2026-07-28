@@ -1,9 +1,8 @@
 describe('Funcionalidade: Contato', () => {
 
   beforeEach(() => {
-    cy.visit('http://localhost:3000/index.html')
+    cy.visit('index.html')
   });
-
   it('Deve preencher formulário de contato com sucesso', () => {
     cy.get( '#name').type('Ana Letícia')
     cy.get ('#email').type('anateste@teste.com')

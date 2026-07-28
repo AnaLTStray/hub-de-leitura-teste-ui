@@ -1,0 +1,49 @@
+
+describe ('Funcionalidade: Cadastro no Hub de Leitura', () => {
+
+  beforeEach(() => {
+    cy.visit('register.html')
+  });
+
+    it('Deve fazer cadastro com sucesso, usando função JavaScript', () => {
+       let email = `ana${Date.now()}@teste.com`
+        cy.get('#name').type('Ana Letícia')
+        cy.get('#email').type(email)
+        cy.get('#phone').type('11987654321')
+        cy.get('#password').type('senha123')
+        cy.get('#confirm-password').type('senha123')
+        cy.get('#terms-agreement').check()
+        cy.get('#register-btn').click()
+        cy.url().should('include', 'dashboard')
+
+
+    });
+
+    it('Deve fazer cadastro com sucesso, usando Faker', () => {
+       let email = `ana${Date.now()}@teste.com`
+        cy.get('#name').type('Ana Letícia')
+        cy.get('#email').type(email)
+        cy.get('#phone').type('11987654321')
+        cy.get('#password').type('senha123')
+        cy.get('#confirm-password').type('senha123')
+        cy.get('#terms-agreement').check()
+        cy.get('#register-btn').click()
+        cy.url().should('include', 'dashboard')
+});
+
+it('Deve preencher cadastro com sucesso - usando comando customizado', () => {
+  let email = `ana${Date.now()}@teste.com`
+  cy.preencherCadastro('Ana Letícia', email, '11987654321', 'senha123')
+
+   cy.url().should('include', 'dashboard')
+})
+
+it('Deve preencher cadastro com sucesso - usando comando customizado', () => {
+  let email = `ana${Date.now()}@teste.com`
+  let nome = faker.person.fullName ({sex: 'female'})
+  cy.preencherCadastro(nome, email, '11987654321', 'senha123')
+
+   cy.url().should('include', 'dashboard')
+})
+
+}); 
